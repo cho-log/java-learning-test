@@ -2,3 +2,5 @@ rootProject.name = 'java-learning-test'
 
 include 'java-test:initial'
 include 'java-test:complete'
+include 'java-language:initial'
+include 'java-language:complete'

@@ -9,6 +9,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/java-language" />
+            <option value="$PROJECT_DIR$/java-language/complete" />
+            <option value="$PROJECT_DIR$/java-language/initial" />
             <option value="$PROJECT_DIR$/java-test" />
             <option value="$PROJECT_DIR$/java-test/complete" />
             <option value="$PROJECT_DIR$/java-test/initial" />
