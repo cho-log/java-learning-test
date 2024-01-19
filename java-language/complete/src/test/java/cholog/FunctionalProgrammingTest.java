@@ -605,15 +605,14 @@ public class FunctionalProgrammingTest {
         }
     }
 
-    /**
-     * 위에서 다룬 내용은 함수형 프로그래밍 자체 보다는 함수형 프로그래밍을 지원하는 자바의 문법과 라이브러리를 학습한 내용입니다.
-     * 자바가 지원하는 함수형 프로그래밍은 다른 언어에서 지원하는 함수형 프로그래밍과는 차이가 있습니다. 자바는 객체 지향 프로그래밍을 지원하는 언어이기 때문입니다.
-     * <p>
-     *
-     * 함수형 프로그래밍은 함수를 이용하여 프로그래밍하는 패러다임으로, 함수형 프로그래밍을 지원하는 자바의 문법과 라이브러리를 학습한 후에는 함수형 프로그래밍을 지원하는 다른 언어를 학습하는 것을 추천합니다.
-     * <p>
-     *     참고: <a href="https://en.wikipedia.org/wiki/Functional_programming">함수형 프로그래밍</a>
-     *     참고: <a href="https://en.wikipedia.org/wiki/Programming_paradigm">프로그래밍 패러다임</a>
-     *     참고: <a href="https://en.wikipedia.org/wiki/Programming_language">프로그래밍 언어</a>
+    /*
+    위에서 다룬 내용은 함수형 프로그래밍 자체 보다는 함수형 프로그래밍을 지원하는 자바의 문법과 라이브러리를 학습한 내용입니다.
+    자바가 지원하는 함수형 프로그래밍은 다른 언어에서 지원하는 함수형 프로그래밍과는 차이가 있습니다. 자바는 객체 지향 프로그래밍을 지원하는 언어이기 때문입니다.
+    하지만 기본적으로 다루는 자바의 함수형 문법을 통해 함수형 프로그래밍의 일부를 학습할 수 있습니다.
+    더욱 명확한 함수형 프로그래밍에 대해 학습하고 싶다면, 함수형 프로그래밍을 지원하는 자바의 문법과 라이브러리를 학습한 후에 함수형 프로그래밍을 지원하는 다른 언어를 학습하는 것을 추천합니다.
+
+    참고: https://en.wikipedia.org/wiki/Programming_paradigm
+    참고: https://en.wikipedia.org/wiki/Functional_programming
+    참고: https://en.wikipedia.org/wiki/Programming_language
      */
 }
