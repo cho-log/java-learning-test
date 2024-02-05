@@ -9,6 +9,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/clean-code" />
+            <option value="$PROJECT_DIR$/clean-code/complete" />
+            <option value="$PROJECT_DIR$/clean-code/initial" />
             <option value="$PROJECT_DIR$/java-language" />
             <option value="$PROJECT_DIR$/java-language/complete" />
             <option value="$PROJECT_DIR$/java-language/initial" />
