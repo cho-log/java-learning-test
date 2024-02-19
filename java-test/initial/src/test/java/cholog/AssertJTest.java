@@ -48,7 +48,7 @@ public class AssertJTest {
             final var expected = 3;
 
             // TODO: JUnit5의 assertEquals 메서드를 AssertJ의 isEqualTo 메서드로 변경해보세요.
-            assertEquals(actual, expected);
+            assertEquals(expected, actual);
         }
 
         /**
@@ -63,10 +63,10 @@ public class AssertJTest {
             final var b = 2;
             final var actual = a + b;
 
-            final var expected = 4;
+            final var unexpected = 4;
 
             // TODO: JUnit5의 assertNotEquals 메서드를 AssertJ의 isNotEqualTo 메서드로 변경해보세요.
-            assertNotEquals(actual, expected);
+            assertNotEquals(unexpected, actual);
         }
 
         /**
@@ -109,7 +109,7 @@ public class AssertJTest {
             final var expected = actual;
 
             // TODO: JUnit5의 assertSame 메서드를 AssertJ의 isSameAs 메서드로 변경해보세요.
-            assertSame(actual, expected);
+            assertSame(expected, actual);
         }
 
         /**
@@ -121,10 +121,10 @@ public class AssertJTest {
         @DisplayName("isNotSameAs 메서드로 두 객체가 같은 객체인지 비교한다")
         void isNotSameAs_메서드로_두_객체가_같은_객체인지_비교한다() {
             final var actual = new Object();
-            final var expected = new Object();
+            final var unexpected = new Object();
 
             // TODO: JUnit5의 assertNotSame 메서드를 AssertJ의 isNotSameAs 메서드로 변경해보세요.
-            assertNotSame(actual, expected);
+            assertNotSame(unexpected, actual);
         }
 
         /*
@@ -279,7 +279,7 @@ public class AssertJTest {
             final var expected = 3;
 
             // TODO: AssertJ의 기능을 활용하여 Collection의 크기를 비교해보세요.
-            assertEquals(actual.size(), expected);
+            assertEquals(expected, actual.size());
         }
 
         /**
@@ -306,7 +306,7 @@ public class AssertJTest {
 
             // TODO: AssertJ의 기능을 활용하여 Collection에 특정 객체들이 포함되어 있는지 비교해보세요.
             for (int i = 0, end = actual.size(); i < end; i++) {
-                assertEquals(actual.get(i), expected.get(i));
+                assertEquals(expected.get(i), actual.get(i));
             }
 
             /* ----- 아래는 추가로 학습할 분만 보세요! -----
@@ -355,7 +355,7 @@ public class AssertJTest {
 
             // TODO: AssertJ의 extracting 메서드를 사용하여 actual에 포함된 User 객체들 중 username 필드를 추출하여 expected와 비교해보세요.
             for (int i = 0, end = actual.size(); i < end; i++) {
-                assertEquals(actual.get(i).getUsername(), expected.get(i));
+                assertEquals(expected.get(i), actual.get(i).getUsername());
             }
 
             /* ----- 아래는 추가로 학습할 분만 보세요! -----

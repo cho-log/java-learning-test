@@ -364,13 +364,13 @@ public class JUnit5Test {
         @DisplayName("assertAll 메서드로 여러 검증 코드를 한 번에 실행한다")
         void assertAll_메서드로_여러_검증_코드를_한_번에_실행한다() {
             // TODO: `assertAll`을 사용하지 않고 모든 테스트를 통과시키는 것과 `assertAll`를 사용하고 모든 테스트를 통과시키는 것에 차이를 비교해보세요.
-            assertEquals(1 + 2, 3);
-            assertEquals(2 + 3, 5);
-            assertEquals(7 * 3, 21);
-            assertEquals(7 * 3 ^ 5, 32);
-            assertEquals(7 * 3 / 5 + 33 / 21, 4);
-            assertEquals(33 * 3 / 5 + 7 / 2, 22);
-            assertEquals(33 * 3 / 5 + 7 / 2 + 1, 22);
+            assertEquals(3, 1 + 2);
+            assertEquals(5, 3 + 2);
+            assertEquals(21, 7 * 3);
+            assertEquals(32, 3 * 7 ^ 5);
+            assertEquals(4, 7 * 3 / 5 + 33 / 21);
+            assertEquals(22, 33 * 3 / 5 + 7 / 2);
+            assertEquals(22, 33 * 3 / 5 + 7 / 2 + 1);
         }
     }
 
