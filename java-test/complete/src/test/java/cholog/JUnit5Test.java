@@ -360,13 +360,13 @@ public class JUnit5Test {
         @DisplayName("assertAll 메서드로 여러 검증 코드를 한 번에 실행한다")
         void assertAll_메서드로_여러_검증_코드를_한_번에_실행한다() {
             assertAll(
-                    () -> assertEquals(1 + 2, 3),
-                    () -> assertEquals(2 + 3, 5),
-                    () -> assertEquals(7 * 3, 21),
-                    () -> assertEquals(7 * 3 ^ 5, 16),
-                    () -> assertEquals(7 * 3 / 5 + 33 / 21, 5),
-                    () -> assertEquals(33 * 3 / 5 + 7 / 2, 23),
-                    () -> assertEquals(33 * 3 / 5 + 7 / 2 + 1, 22)
+                    () -> assertEquals(3, 1 + 2),
+                    () -> assertEquals(5, 2 + 3),
+                    () -> assertEquals(21, 7 * 3),
+                    () -> assertEquals(16, 7 * 3 ^ 5),
+                    () -> assertEquals(5, 7 * 3 / 5 + 33 / 21),
+                    () -> assertEquals(22, 33 * 3 / 5 + 7 / 2),
+                    () -> assertEquals(23, 33 * 3 / 5 + 7 / 2 + 1)
             );
 
         }
