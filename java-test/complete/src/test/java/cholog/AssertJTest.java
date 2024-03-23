@@ -21,7 +21,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  */
 public class AssertJTest {
     /**
-     * AssertJ의 `assertThat` 메서드는 JUnit5의 `assertThat` 메서드와 비슷한 기능을 합니다.
+     * AssertJ의 `assertThat` 메서드는 다양한 Assert 타입을 반환하도록 오버로딩 되어있습니다.
+     * Assert에서 제공되는 다양한 메서드를 이용해 값을 검증할 수 있습니다.
      */
     @Nested
     @DisplayName("assertThat 메서드 학습 테스트")
