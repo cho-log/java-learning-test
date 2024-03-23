@@ -155,13 +155,13 @@ public class ExceptionHandlingTest {
         }
 
         /**
-         * catch 블록을 여러 개 사용할 때 주의할 점은 상위 클래스의 예외를 먼저 처리해야 합니다.
-         * 상위 클래스란 상속 관계에서 상위에 있는 클래스를 의미합니다.
-         * 상위 클래스의 예외를 먼저 처리하지 않으면 하위 클래스의 예외를 처리할 수 없어 컴파일 에러가 발생합니다.
+         * catch 블록을 여러 개 사용할 때 주의할 점은 하위 클래스의 예외를 먼저 처리해야 합니다.
+         * 하위 클래스란 상속 관계에서 하위에 있는 클래스를 의미합니다.
+         * 하위 클래스의 예외를 먼저 처리하지 않으면 상위 클래스의 예외를 처리할 수 없어 컴파일 에러가 발생합니다.
          */
         @Test
-        @DisplayName("상위 클래스의 예외를 먼저 처리하지 않으면 컴파일 에러가 발생한다")
-        void 상위_클래스의_예외를_먼저_처리하지_않으면_컴파일_에러가_발생한다() {
+        @DisplayName("하위 클래스의 예외를 먼저 처리하지 않으면 컴파일 에러가 발생한다")
+        void 하위_클래스의_예외를_먼저_처리하지_않으면_컴파일_에러가_발생한다() {
             class SuperException extends Exception {
             }
             class ChildException extends SuperException {
@@ -178,12 +178,11 @@ public class ExceptionHandlingTest {
             } catch (final SuperException e) {
                 System.out.println("예외 처리 성공");
             }
-            /* TODO: 아래 코드의 주석을 풀어 예외 처리를 통해 컴파일 에러를 해결해보세요.
-            catch (final ChildException e) { // Note: 상위 클래스의 예외를 먼저 처리하지 않으면 컴파일 에러가 발생한다.
+            /* TODO: 주석을 풀고 컴파일 에러를 해결해보세요.
+             catch (final ChildException e) { // Note: 하위 클래스의 예외를 먼저 처리하지 않으면 컴파일 에러가 발생한다.
                 System.out.println("예외 처리 성공");
             }
              */
-
         }
 
         /**

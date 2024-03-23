@@ -290,7 +290,7 @@ public class FunctionalProgrammingTest {
         }
 
         /*
-        Function, Consumer, Supplier, Predicate, Optional은 대표적인 함수형 인터페이스입니다.
+        Function, Consumer, Supplier, Predicate는 대표적인 함수형 인터페이스입니다.
         이 외에도 다양한 함수형 인터페이스가 있습니다.
         <p>
         참고: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html">java.util.function</a>
@@ -516,7 +516,7 @@ public class FunctionalProgrammingTest {
          * - 단어의 길이가 12자를 초과하는 단어를 추출한다.
          * - 12자가 넘는 단어 중 길이가 짧은 순서대로 100개의 단어를 추출한다.
          * -- 단어 중복을 허용하지 않는다. 즉, 서로 다른 단어 100개를 추출한다.
-         * - 추출한 100개의 단어 중 두번째 문자열이 대문자라면 제외한다.
+         * - 추출한 단어의 두번째 문자가 대문자라면 단어를 제외한다.
          * -- ex) abc 허용 | abC 허용 | aBc 제외 | aBC 제외 | AbC 허용
          * - 추출한 단어를 소문자로 변경하여 알파벳 순서대로 앞에 있는 10개의 단어를 추출한다.
          */

@@ -4,15 +4,23 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * JUnit5는 자바 언어를 사용하는 소프트웨어 개발자들을 위한 테스트 프레임워크 중 하나입니다.
@@ -372,10 +380,141 @@ public class JUnit5Test {
         }
     }
 
+    /**
+     * `ParameterizedTest` 애노테이션은 테스트에 필요한 파라미터를 제공하는 테스트입니다.
+     * 보통 테스트에 따라 `@ValueSource`와 `@MethodSource` 같은 애노테이션 중 적합한 애노테이션을 선택하여 테스트를 진행할 수 있습니다.
+     * 이 외에도 `@CsvSource`, `@EnumSource` 등과 같은 다양한 애노테이션을 함께 활용하여 파라미터 값을 주입받을 수 있습니다.
+     * <p>
+     * `ParameterizedTest`를 사용하면 하나의 테스트 로직 내에서 여러 변수를 선언하지 않고, 주입받는 값을 활용하여 유연하고 단편화된 테스트 코드를 작성할 수 있습니다.
+     */
+    @Nested
+    @DisplayName("@ParameterizedTest 애노테이션 학습 테스트")
+    class ParameterizedAnnotationTest {
+
+        /**
+         * `@ValueSource` 애노테이션은 `@ParameterizedTest` 애노테이션과 함께 사용되며 정의된 값을 하나의 인자로 받아들이는 역할을 합니다.
+         * `@ValueSource` 내부에 선언된 `ints` 속성은 정수 형태의 인자를 입력할 수 있도록 만들어줍니다.
+         */
+        @ParameterizedTest
+        @ValueSource(ints = 1)
+        @DisplayName("ValueSource 애노테이션을 붙여 정수 매개변수를 한 번 입력받는다")
+        void ValueSource_애노테이션을_붙여_정수_매개변수를_한_번_입력받는다(int value) {
+        }
+
+        /**
+         * `@ValueSource` 애노테이션의 속성들은 다음과 같이 배열 형태로 입력이 가능합니다.
+         * `@ValueSource` 애노테이션의 속성을 배열 형태로 입력해줌으로서, 각 배열의 값마다 각각의 테스트를 수행하도록 구현할 수 있습니다.
+         */
+        @ParameterizedTest
+        @ValueSource(ints = {1, 2, 3, 4})
+        @DisplayName("ValueSource 애노테이션을 붙여 정수 매개변수를 여러 번 입력받는다")
+        void ValueSource_애노테이션을_붙여_정수_매개변수를_여러_번_입력받는다(int value) {
+            assertTrue(value > 0 && value < 10);
+        }
+
+        /**
+         * `@ValueSource` 애노테이션은 `ints`와 같은 속성을 통해 정수 형태를 포함한 string, char, long 등의 다양한 타입을 지원합니다.
+         */
+        @ParameterizedTest
+        @ValueSource(strings = {"a", "b", "c"})
+        @DisplayName("ValueSource 애노테이션을 붙여 문자열 매개변수를 여러 번 입력받는다")
+        void ValueSource_애노테이션을_붙여_문자열_매개변수를_여러_번_입력받는다(String value) {
+            assertEquals(value.length(), 1);
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"1", "2", "3", "4", "5"})
+        @DisplayName("ValueSource 애노테이션을 활용하여 1부터 5까지의 문자열 값을 Integer로 parseInt하는 로직이 예외를 발생시키지 않는 지 검증한다")
+        void ValueSource_애노테이션을_활용하여_1부터_5까지의_문자열_값을_Integer로_변경하는_로직이_예외를_발생시키지_않는_지_검증한다(String value) {
+            assertDoesNotThrow(() -> Integer.parseInt(value));
+        }
+
+        /**
+         * `@MethodSource` 애노테이션은 메서드 이름을 인자로 받아들이며, 인자에서 호출된 메서드는 테스트 메서드에 전달될 인자를 반환합니다.
+         */
+        @ParameterizedTest
+        @MethodSource("methodSourceTestArguments")
+        @DisplayName("MethodSource 애노테이션을 붙여 Object 매개변수를 한 번 입력받는다")
+        void MethodSource_애노테이션을_붙여_Object_매개변수를_한_번_입력받는다(Object value) {
+        }
+
+
+        /**
+         * `@MethodSource`의 속성으로 사용된 해당 메서드는 `Arguments`를 `Stream`에 담아 return 하여, 각각의 `Arguments`가 테스트에 하나씩 전달되도록 구현된 형태입니다.
+         * `Arguments`란 `ParameterizedTest` 에서 사용되는 값의 하나를 가리키며, `JUnit`이 제공하는 객체입니다.
+         * <p>
+         * `@MethodSource`의 속성으로 사용되는 메서드는 `Stream<?>` 외에도 `Iterator<?>`, `Iterable<?>` 또는 `Object[]` 타입을 반환할 수 있습니다.
+         */
+        private static Stream<Arguments> methodSourceTestArguments() {
+            return Stream.of(
+                    Arguments.arguments(new Object())
+            );
+        }
+
+        @ParameterizedTest
+        @MethodSource("methodSourcesTestArguments")
+        @DisplayName("MethodSource 애노테이션을 붙여 Object 매개변수를 여러 번 입력받는다")
+        void MethodSource_애노테이션을_붙여_Object_매개변수를_여러_번_입력받는다(Object object) {
+            assertInstanceOf(Object.class, object);
+        }
+
+        /**
+         * `Arguments`를 `Stream` 내부에 여러 개 선언해줌으로서, 각 `Arguments`마다 각각의 테스트를 수행하도록 구현할 수 있습니다.
+         */
+        private static Stream<Arguments> methodSourcesTestArguments() {
+            return Stream.of(
+                    Arguments.arguments(new Object()),
+                    Arguments.arguments(new Object()),
+                    Arguments.arguments(new Object()),
+                    Arguments.arguments(new Object())
+            );
+        }
+
+        /**
+         * `@MethodSource` 애노테이션을 사용하면 `Iterable` 또한 테스트의 인자로 입력받을 수 있으며, 이 외에 어떠한 객체라도 입력받을 수 있습니다.
+         * `Arguments`의 `arguments` 메서드는 매개변수로 `Object... arguments`를 입력받고, 내부 구현을 통해 `Arguments` 객체를 생성하기 때문에 어떠한 타입이든 테스트의 인자로 사용할 수 있는 것입니다.
+         */
+        @ParameterizedTest
+        @MethodSource("methodSourceIterableTestArguments")
+        @DisplayName("MethodSource 애노테이션을 붙여 Iterable 매개변수를 입력받는다")
+        void MethodSource_애노테이션을_붙여_Iterable_매개변수를_입력받는다(List<Integer> values) {
+            assertEquals(values.size(), 3);
+        }
+
+        private static Stream<Arguments> methodSourceIterableTestArguments() {
+            return Stream.of(
+                    Arguments.arguments(
+                            List.of(1, 4, 5),
+                            List.of(1, 2, 3),
+                            List.of(1, 3, 4)
+                    )
+            );
+        }
+
+        /**
+         * `@MethodSource` 애노테이션과 `Arguments` 객체를 사용하면 서로 다른 자료형의 값 또한 테스트의 인자로 함께 입력받을 수 있습니다.
+         */
+        @ParameterizedTest
+        @MethodSource("methodSourcesStringAndIntegerTestArguments")
+        @DisplayName("MethodSource 애노테이션을 붙여 정수와 문자열 매개변수를 입력받는다")
+        void MethodSource_애노테이션을_붙여_정수와_문자열_매개변수를_입력받는다(String v1, int v2) {
+            // TODO: `MethodSource`를 사용하지 않고 문자열과 정수 변수들을 직접 선언하여 테스트하는 방식과, `MethodSource`를 통해 입력받아 테스트하는 방식의 차이를 비교해보세요.
+            assertEquals(Integer.parseInt(v1), v2);
+        }
+
+        private static Stream<Arguments> methodSourcesStringAndIntegerTestArguments() {
+            return Stream.of(
+                    Arguments.arguments("1", 1),
+                    Arguments.arguments("2", 2),
+                    Arguments.arguments("3", 3),
+                    Arguments.arguments("4", 4)
+            );
+        }
+    }
+
     /*
     해당 테스트에서 제공하는 기능 이외에 더 많은 기능들이 있습니다.
     - @RepeatedTest
-    - @ParameterizedTest
     - @BeforeEach
     - @AfterEach
     - @BeforeAll
