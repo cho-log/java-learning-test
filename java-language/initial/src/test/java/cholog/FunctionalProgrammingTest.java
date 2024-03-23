@@ -290,7 +290,7 @@ public class FunctionalProgrammingTest {
         }
 
         /*
-        Function, Consumer, Supplier, Predicate, Optional은 대표적인 함수형 인터페이스입니다.
+        Function, Consumer, Supplier, Predicate는 대표적인 함수형 인터페이스입니다.
         이 외에도 다양한 함수형 인터페이스가 있습니다.
         <p>
         참고: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html">java.util.function</a>
