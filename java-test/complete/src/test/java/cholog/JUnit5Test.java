@@ -483,11 +483,9 @@ public class JUnit5Test {
 
         private static Stream<Arguments> methodSourceIterableTestArguments() {
             return Stream.of(
-                    Arguments.arguments(
-                            List.of(1, 4, 5),
-                            List.of(1, 2, 3),
-                            List.of(1, 3, 4)
-                    )
+                    Arguments.arguments(List.of(1, 4, 5)),
+                    Arguments.arguments(List.of(1, 2, 3)),
+                    Arguments.arguments(List.of(1, 3, 4))
             );
         }
 
