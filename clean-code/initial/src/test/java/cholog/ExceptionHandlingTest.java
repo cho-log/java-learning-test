@@ -495,7 +495,7 @@ public class ExceptionHandlingTest {
                 class BrokenVendingMachine extends VendingMachine {
                     @Override
                     Item selectItemByName(final String name) {
-                        throw new IllegalArgumentException("아이템을 뽑는 데 실패했습니다.");
+                        throw new IllegalStateException("아이템을 뽑는 데 실패했습니다.");
                     }
                 }
 
