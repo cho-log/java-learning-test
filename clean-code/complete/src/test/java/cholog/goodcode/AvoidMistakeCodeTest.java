@@ -101,7 +101,7 @@ public class AvoidMistakeCodeTest {
                 private static final Map<String, Car> CACHE = new ConcurrentHashMap<>();
 
                 public static Car of(final String name, final Position position) {
-                    return CACHE.computeIfAbsent(toKey(name, position), key -> new Car(key, position));
+                    return CACHE.computeIfAbsent(toKey(name, position), key -> new Car(name, position));
                 }
 
                 private static String toKey(final String name, final Position position) {
@@ -123,6 +123,10 @@ public class AvoidMistakeCodeTest {
 
             assertThat(neoCar.position()).isEqualTo(Position.valueOf(1));
             assertThat(brownCar.position()).isEqualTo(Position.valueOf(0));
+            assertThat(neoCar.name()).isEqualTo("네오");
+            assertThat(brownCar.name()).isEqualTo("브라운");
+            assertThat(Car.of("네오", Position.valueOf(1))).isSameAs(neoCar);
+            assertThat(Car.of("브라운", position)).isSameAs(brownCar);
         }
     }
 
